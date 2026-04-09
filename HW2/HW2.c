@@ -22,11 +22,11 @@ int main()
 
     while (true) {
         int i = 0; 
-        for(i = 0; i < 150; i++){
+        for(i = 0; i < 180; i++){
             setServo(i);
             sleep_ms(10);
         }
-        for(i = 150; i > 100; i--){
+        for(i = 190; i > 0; i--){
             setServo(i);
             sleep_ms(10);
         }
@@ -34,5 +34,5 @@ int main()
 }
 
 void setServo(int angle){
-    pwm_set_gpio_level(PWMPIN, (int)((0.04 + (angle/180)*0.11)*60000));
+    pwm_set_gpio_level(PWMPIN, (int)((0.02 + (angle/180.0)*0.11)*60000));
 }
