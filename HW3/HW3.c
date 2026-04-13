@@ -4,40 +4,28 @@
 #include "pico/cyw43_arch.h"
 #include "HW3.h"
 
-
-// const uint8_t buf1[2] = {0x00, 0x7F};   
-// const uint8_t buf2[2] = {0x0A, 0x80};
-// const uint8_t buf3[1] = {0x09};
-// const uint8_t buf4[2] = {0x0A, 0x00};
-uint8_t readbuf;
-
 int main()
 {
     stdio_init_all();
     i2c_init_all();
 
     int rc = cyw43_arch_init();
-
+    int led = 1;
     while (true) {
-        printf("%d\n",readbuf);
 
-        i2c_write_blocking(i2c_default, ADDR, buf3, 1, true);  // true to keep host control of bus
-        i2c_read_blocking(i2c_default, ADDR, &readbuf, 1, false);  // false - finished with bus
-
-        int button  = readbuf & 0b00000001;
-        if (button == 1){
-            i2c_write_blocking(i2c_default, 0b0100000, buf1, 2, false);
-            i2c_write_blocking(i2c_default, 0b0100000, buf4, 2, false);
+        unsigned char readbuf = readPin(ADDR, GPIO);
+        int button  = readbuf & 0x01;
+        setPin(ADDR, IODIR, 0x7F);
+        if (button){
+            setPin(ADDR, OLAT, 0x00);
         }
         else{
-            i2c_write_blocking(i2c_default, 0b0100000, buf1, 2, false);
-            i2c_write_blocking(i2c_default, 0b0100000, buf2, 2, false);
+            setPin(ADDR, OLAT, 0x80);
         }
-        // LED Blink
-        // cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 1);
-        // sleep_ms(250);
-        // cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, 0);
-        // sleep_ms(250);
+        cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, !led);
+        led = !led;
+        sleep_ms(100);
+        
     }
 }
 
@@ -61,4 +49,20 @@ void i2c_init_all(){
     // first byte of buf = address 
 }
 
+void setPin(unsigned char addr, unsigned char reg, unsigned char val){
 
+    uint8_t buf[2] = {reg, val};
+    i2c_write_blocking(i2c_default, addr, buf, 2, false);
+
+}
+
+unsigned char readPin(unsigned char addr, unsigned char reg){
+    
+    unsigned char readbuf;
+    uint8_t buf[1] = {reg};
+
+    i2c_write_blocking(i2c_default, addr, buf, 1, true);  // true to keep host control of bus
+    i2c_read_blocking(i2c_default, addr, &readbuf, 1, false);  // false - finished with bus
+
+    return readbuf;
+}

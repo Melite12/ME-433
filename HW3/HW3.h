@@ -17,5 +17,7 @@
 #define LEDPIN CYW43_WL_GPIO_LED_PIN
 
 void i2c_init_all();
+void setPin(unsigned char addr, unsigned char reg, unsigned char val);
+unsigned char readPin(unsigned char addr, unsigned char reg);
 
 #endif 
