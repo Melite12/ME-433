@@ -22,7 +22,7 @@ int main()
         else{
             setPin(ADDR, OLAT, 0x80);
         }
-        cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, !led);
+        yw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, !led);  
         led = !led;
         sleep_ms(100);
         
