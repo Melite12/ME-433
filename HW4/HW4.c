@@ -10,15 +10,24 @@
 
 int main()
 {
+    
     stdio_init_all();
     i2c_init_all();
+    ssd1306_setup();
 
     int rc = cyw43_arch_init();
     int led = 1;
+    unsigned char pixel = 1;
+    unsigned char x = 10;
+    unsigned char y = 10;
+
+    sleep_ms(2000);
+
+    ssd1306_drawPixel(x, y, 1); 
+    ssd1306_update();
 
     while (true) {
         printf("Hello, world!\n");
-
 
         cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led);
         led = !led;
