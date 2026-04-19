@@ -23,17 +23,36 @@ int main()
 
     sleep_ms(2000);
 
-    ssd1306_clear();
+    unsigned int t1;
+    unsigned int t2;
+    float diff_us;
+    float fps;
     
-    int i = 15;
-    char message[50]; 
-    sprintf(message, "my var = %d", i); 
-    drawString  (20,10,message); // draw starting at x=20,y=10  
-    ssd1306_update();
-
     while (true) {
+        // draw Frame
+        t1 = to_us_since_boot(get_absolute_time());
+        ssd1306_clear();
+        
+        char message[50]; 
+        sprintf(message, "the quick brown fox jumps"); 
+        drawString  (0,0,message);
+        drawString  (0,8,message);
+        drawString  (0,16,message);
+        drawString  (0,24,message);
 
+        ssd1306_update();
+        t2 = to_us_since_boot(get_absolute_time());
 
+        sleep_ms(500);
+        
+        // draw FPS
+        diff_us = absolute_time_diff_us(t1, t2);
+        fps = 1000000.0 / diff_us;
+        sprintf(message, "FPS = %.1f", fps);
+
+        ssd1306_clear();
+        drawString(0,0,message);
+        ssd1306_update();
 
         // LED Blink
         cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led);
