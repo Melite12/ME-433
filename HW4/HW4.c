@@ -23,15 +23,22 @@ int main()
 
     sleep_ms(2000);
 
-    ssd1306_drawPixel(x, y, 1); 
+    ssd1306_clear();
+    
+    int i = 15;
+    char message[50]; 
+    sprintf(message, "my var = %d", i); 
+    drawString  (20,10,message); // draw starting at x=20,y=10  
     ssd1306_update();
 
     while (true) {
-        printf("Hello, world!\n");
 
+
+
+        // LED Blink
         cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led);
         led = !led;
-        sleep_ms(1000);
+        sleep_ms(500);
     }
 }
 
@@ -54,3 +61,5 @@ void i2c_init_all(){
     // false = write ; true = read
     // first byte of buf = address 
 }
+
+

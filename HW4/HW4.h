@@ -12,5 +12,4 @@
 #define LEDPIN CYW43_WL_GPIO_LED_PIN
 
 void i2c_init_all();
-
 #endif 

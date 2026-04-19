@@ -2,8 +2,8 @@
 #define FONT_H__
 
 // make these functions:
-// void drawChar(...);
-// void drawString(...);
+
+
 
 // lookup table for all of the ascii characters
 static const char ASCII[96][5] = {
@@ -104,5 +104,29 @@ static const char ASCII[96][5] = {
 ,{0x10, 0x08, 0x08, 0x10, 0x08} // 7e ?
 ,{0x00, 0x06, 0x09, 0x09, 0x06} // 7f ?
 }; // end char ASCII[96][5]
+
+// void drawChar(...);
+void drawChar(unsigned char x, unsigned char y, unsigned char letter){
+    unsigned char row = letter - 0x20;
+    const char *columns = ASCII[row];
+    for (int i = 0; i < 5; i++){
+        for(int j = 0; j < 8; j++){
+            if (columns[i]&(1 << j)){
+                ssd1306_drawPixel(x + i, y + j, 1); 
+            }
+        }
+    }
+}
+
+// void drawString(...);
+void drawString(unsigned char x, unsigned char y, unsigned char *message){
+    
+    while(*message != '\0'){
+        drawChar(x, y, *message);
+        x = x + 5;
+        message++;
+    }
+}
+
 
 #endif
