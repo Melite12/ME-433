@@ -25,8 +25,9 @@ int main()
     while (true) { 
         data = readData(ADDR, ACCEL_XOUT_H);
 
-        printf("Acc_x: %d   Acc_y: %d   Acc_z: %d\n", data.acc_x, data.acc_y, data.acc_z);
-        printf("Gyro_x: %d   Gryo_y: %d   Gyro_z: %d\n", data.gyro_x, data.gyro_y, data.gyro_z);
+        printf("Acc_x: %.3f   Acc_y: %.3f   Acc_z: %.3f\n", data.acc_x, data.acc_y, data.acc_z);
+        printf("Gyro_x: %.3f   Gryo_y: %.3f   Gyro_z: %.3f\n", data.gyro_x, data.gyro_y, data.gyro_z);
+        printf("Temp: %.2f\n", data.temp);
 
         cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led);
         led = !led;
@@ -89,13 +90,13 @@ struct Data readData(unsigned char addr, unsigned char reg){
     }
 
     struct Data data;
-    data.acc_x =  (int16_t)((readbuf[0] << 8) | readbuf[1]) ;
-    data.acc_y =  (int16_t)((readbuf[2] << 8) | readbuf[3]) ;
-    data.acc_z =  (int16_t)((readbuf[4] << 8) | readbuf[5]) ;
+    data.acc_x =  (int16_t)((readbuf[0] << 8) | readbuf[1]) * ACC_TO_G ;
+    data.acc_y =  (int16_t)((readbuf[2] << 8) | readbuf[3]) * ACC_TO_G;
+    data.acc_z =  (int16_t)((readbuf[4] << 8) | readbuf[5]) * ACC_TO_G;
     data.temp =   (int16_t)((readbuf[6] << 8) | readbuf[7]) / 340.0 + 36.53;
-    data.gyro_x = (int16_t)((readbuf[8] << 8) | readbuf[9]) ;
-    data.gyro_y = (int16_t)((readbuf[10] << 8) | readbuf[11]) ;
-    data.gyro_z = (int16_t)((readbuf[12] << 8) | readbuf[13]) ;
+    data.gyro_x = (int16_t)((readbuf[8] << 8) | readbuf[9]) * GYRO_TO_DPS;
+    data.gyro_y = (int16_t)((readbuf[10] << 8) | readbuf[11]) * GYRO_TO_DPS;
+    data.gyro_z = (int16_t)((readbuf[12] << 8) | readbuf[13]) * GYRO_TO_DPS;
 
     return data;
 }

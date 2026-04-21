@@ -41,13 +41,13 @@
 #define GYRO_TO_DPS 0.007630
 
 struct Data{
-    int16_t acc_x;
-    int16_t acc_y;
-    int16_t acc_z;
-    int16_t temp;
-    int16_t gyro_x;
-    int16_t gyro_y;
-    int16_t gyro_z;
+    float acc_x;
+    float acc_y;
+    float acc_z;
+    float temp;
+    float gyro_x;
+    float gyro_y;
+    float gyro_z;
 };
 
 void i2c_init_all();
