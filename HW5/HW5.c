@@ -1,15 +1,17 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "pico/stdlib.h"
 #include "hardware/i2c.h"
 
 #include "HW5.h"
 #include "pico/cyw43_arch.h"
-
+#include "ssd1306.h"
 
 int main()
 {
     stdio_init_all();
     i2c_init_all();
+    ssd1306_setup();
     int rc = cyw43_arch_init();
     int led = 1;
 
@@ -28,6 +30,8 @@ int main()
         printf("Acc_x: %.3f   Acc_y: %.3f   Acc_z: %.3f\n", data.acc_x, data.acc_y, data.acc_z);
         printf("Gyro_x: %.3f   Gryo_y: %.3f   Gyro_z: %.3f\n", data.gyro_x, data.gyro_y, data.gyro_z);
         printf("Temp: %.2f\n", data.temp);
+
+        drawScreen(data);
 
         cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led);
         led = !led;
@@ -99,4 +103,18 @@ struct Data readData(unsigned char addr, unsigned char reg){
     data.gyro_z = (int16_t)((readbuf[12] << 8) | readbuf[13]) * GYRO_TO_DPS;
 
     return data;
+}
+
+void drawScreen(struct Data data){
+    int x_val = abs((int)((data.acc_x) * 64));
+    int y_val = abs((int)((data.acc_y) * 16));
+
+    ssd1306_clear();
+    for (int i = 0; i < x_val; i++){
+        ssd1306_drawPixel(i + 64, 16, 1);
+    }
+    for (int i = 0; i < y_val; i++){
+        ssd1306_drawPixel(64, i + 16, 1);
+    }
+    ssd1306_update();
 }

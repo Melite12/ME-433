@@ -51,8 +51,11 @@ struct Data{
 };
 
 void i2c_init_all();
+
 unsigned char readPin(unsigned char addr, unsigned char reg);
 void writePin(unsigned char addr, unsigned char reg, unsigned char val);
+
 struct Data readData(unsigned char addr, unsigned char reg);
+void drawScreen(struct Data data);
 
 #endif
