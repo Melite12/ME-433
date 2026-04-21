@@ -33,9 +33,9 @@ int main()
 
         drawScreen(data);
 
-        cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led);
+        //cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led);
         led = !led;
-        sleep_ms(1000);
+        sleep_ms(10);
     }
 }
 
@@ -106,15 +106,32 @@ struct Data readData(unsigned char addr, unsigned char reg){
 }
 
 void drawScreen(struct Data data){
-    int x_val = abs((int)((data.acc_x) * 64));
-    int y_val = abs((int)((data.acc_y) * 16));
+    int x_val = (int)((data.acc_x) * 64);
+    int y_val = (int)((data.acc_y) * 16);
 
     ssd1306_clear();
-    for (int i = 0; i < x_val; i++){
-        ssd1306_drawPixel(i + 64, 16, 1);
+    
+    if (x_val > 0){
+        for (int i = 0; i < x_val; i++){
+            ssd1306_drawPixel(64 - i, 16, 1);
+        }
     }
-    for (int i = 0; i < y_val; i++){
-        ssd1306_drawPixel(64, i + 16, 1);
+    else{
+        for (int i = 0; i < abs(x_val); i++){
+            ssd1306_drawPixel(64 + i, 16, 1);
+        }
     }
+
+    if (y_val > 0){
+        for (int i = 0; i < y_val; i++){
+            ssd1306_drawPixel(64, i + 16, 1);
+        }
+    }
+    else{
+        for (int i = 0; i < abs(y_val); i++){
+            ssd1306_drawPixel(64, 16 - i, 1);
+        }
+    }
+
     ssd1306_update();
 }
