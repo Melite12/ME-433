@@ -13,6 +13,9 @@ int main()
     int rc = cyw43_arch_init();
     int led = 1;
 
+    sleep_ms(3000);
+    unsigned char testing = readPin(ADDR, WHO_AM_I);
+    printf("%d",testing);
     while (true) {
         cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led);
         led = !led;
@@ -41,4 +44,15 @@ void i2c_init_all(){
     // 2 = length of array (should math buf?)
     // false = write ; true = read
     // first byte of buf = address 
+}
+
+unsigned char readPin(unsigned char addr, unsigned char reg){
+    
+    unsigned char readbuf;
+    uint8_t buf[1] = {reg};
+
+    i2c_write_blocking(I2C_PORT_1, addr, buf, 1, true);  // true to keep host control of bus
+    i2c_read_blocking(I2C_PORT_1, addr, &readbuf, 1, false);  // false - finished with bus
+
+    return readbuf;
 }

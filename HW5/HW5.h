@@ -12,13 +12,13 @@
 #define I2C_SCL_1 15
 
 // config / misc
-#define ADDR 0x68;
+#define ADDR 0x68
 #define CONFIG 0x1A
 #define GYRO_CONFIG 0x1B
 #define ACCEL_CONFIG 0x1C
 #define PWR_MGMT_1 0x6B
 #define PWR_MGMT_2 0x6C
-#define WHO_AM_I 0x75;
+#define WHO_AM_I 0x75
 
 // sensor data registers
 #define ACCEL_XOUT_H 0x3B
@@ -40,5 +40,7 @@
 
 
 void i2c_init_all();
+unsigned char readPin(unsigned char addr, unsigned char reg);
+
 
 #endif
