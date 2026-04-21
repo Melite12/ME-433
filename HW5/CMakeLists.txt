@@ -42,22 +42,18 @@ pico_set_program_version(HW5 "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
 pico_enable_stdio_uart(HW5 0)
-pico_enable_stdio_usb(HW5 0)
+pico_enable_stdio_usb(HW5 1)
 
 # Add the standard library to the build
 target_link_libraries(HW5
-        pico_stdlib)
+        pico_stdlib
+        hardware_i2c
+        pico_cyw43_arch_none)
 
 # Add the standard include files to the build
 target_include_directories(HW5 PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
 )
-
-# Add any user requested libraries
-target_link_libraries(HW5 
-        hardware_i2c
-        
-        )
 
 pico_add_extra_outputs(HW5)
 
