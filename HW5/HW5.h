@@ -36,11 +36,23 @@
 #define GYRO_ZOUT_H  0x47
 #define GYRO_ZOUT_L  0x48
 
+// Conversion
+#define ACC_TO_G 0.000061
+#define GYRO_TO_DPS 0.007630
 
-
+struct Data{
+    int16_t acc_x;
+    int16_t acc_y;
+    int16_t acc_z;
+    int16_t temp;
+    int16_t gyro_x;
+    int16_t gyro_y;
+    int16_t gyro_z;
+};
 
 void i2c_init_all();
 unsigned char readPin(unsigned char addr, unsigned char reg);
-
+void writePin(unsigned char addr, unsigned char reg, unsigned char val);
+struct Data readData(unsigned char addr, unsigned char reg);
 
 #endif
