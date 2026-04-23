@@ -67,8 +67,12 @@ int main(void)
   button_init();
   led_init();
     int led = 1;
+  
+  i2c_init_all();
   imu_init();
     struct Data data;
+  
+  ssd1306_setup();
 
   // init device stack on configured roothub port
   tud_init(BOARD_TUD_RHPORT);
@@ -93,10 +97,10 @@ int main(void)
     drawScreen(data);
 
     sleep_ms(1000);
-    //tud_task(); // tinyusb device task
-    //led_blinking_task();
+    tud_task(); // tinyusb device task
+    led_blinking_task();
 
-    //hid_task();
+    hid_task();
   }
 }
 
