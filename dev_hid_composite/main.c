@@ -37,8 +37,12 @@
 #include "hardware/gpio.h"
 #include "hardware/i2c.h"
 #include "pico/cyw43_arch.h"
+#include <math.h>
 
 #define BUTTON 10
+int led = 1;
+struct Data data_global;
+float angle = 0;
 
 //--------------------------------------------------------------------+
 // MACRO CONSTANT TYPEDEF PROTYPES
@@ -66,11 +70,8 @@ int main(void)
   board_init();
   button_init();
   led_init();
-    int led = 1;
-  
   i2c_init_all();
-  //imu_init();
-    struct Data data;
+  imu_init();
   
   //ssd1306_setup();
 
@@ -88,7 +89,7 @@ int main(void)
       cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led);
     }
 
-    //data = readData(ADDR, ACCEL_XOUT_H);
+    data_global = readData(ADDR, ACCEL_XOUT_H);
 
     // printf("Acc_x: %.3f   Acc_y: %.3f   Acc_z: %.3f\n", data.acc_x, data.acc_y, data.acc_z);
     // printf("Gyro_x: %.3f   Gryo_y: %.3f   Gyro_z: %.3f\n", data.gyro_x, data.gyro_y, data.gyro_z);
@@ -96,7 +97,7 @@ int main(void)
 
     //drawScreen(data);
 
-    sleep_ms(100);
+    
     tud_task(); // tinyusb device task
     led_blinking_task();
 
@@ -169,10 +170,21 @@ static void send_hid_report(uint8_t report_id, uint32_t btn)
 
     case REPORT_ID_MOUSE:
     {
-      int8_t const delta = 5;
+      int8_t delta_x;
+      int8_t delta_y;
+      if(led == 1){
+        delta_x = -data_global.acc_x * 5.0;
+        delta_y =  data_global.acc_y * 5.0;
+        angle = 0;
+      }
+      else{
+        delta_x = 3*sin(angle);
+        delta_y = 3*cos(angle);
+        angle += 0.03;
+      }
 
       // no button, right + down, no scroll, no pan
-      tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta, delta, 0, 0);
+      tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta_x, delta_y, 0, 0);
     } 
     break;
 
