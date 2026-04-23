@@ -69,10 +69,10 @@ int main(void)
     int led = 1;
   
   i2c_init_all();
-  imu_init();
+  //imu_init();
     struct Data data;
   
-  ssd1306_setup();
+  //ssd1306_setup();
 
   // init device stack on configured roothub port
   tud_init(BOARD_TUD_RHPORT);
@@ -88,15 +88,15 @@ int main(void)
       cyw43_arch_gpio_put(CYW43_WL_GPIO_LED_PIN, led);
     }
 
-    data = readData(ADDR, ACCEL_XOUT_H);
+    //data = readData(ADDR, ACCEL_XOUT_H);
 
     // printf("Acc_x: %.3f   Acc_y: %.3f   Acc_z: %.3f\n", data.acc_x, data.acc_y, data.acc_z);
     // printf("Gyro_x: %.3f   Gryo_y: %.3f   Gyro_z: %.3f\n", data.gyro_x, data.gyro_y, data.gyro_z);
     // printf("Temp: %.2f\n", data.temp);
 
-    drawScreen(data);
+    //drawScreen(data);
 
-    sleep_ms(1000);
+    sleep_ms(100);
     tud_task(); // tinyusb device task
     led_blinking_task();
 
