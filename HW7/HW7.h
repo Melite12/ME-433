@@ -8,7 +8,9 @@
 #define PIN_SCK  18
 #define PIN_MOSI 19
 
-void SPI_init();
 
+void SPI_init();
+void adc_init_all();
+void sin_math(uint16_t val, uint8_t *data);
 
 #endif
