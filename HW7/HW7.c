@@ -47,21 +47,19 @@ int main()
 
         // adc
         int val = adc_read();
-        printf("%d\n",val);
         
-        sleep_ms(10);
+        sleep_ms(1);
         
-        time = time + 0.01;
+        time = time + 0.001;
         if (time >= 1.0){
             time = 0;
-            printf("%f", time);
         }
     }
 }
 
 void SPI_init(){
     // SPI initialisation
-    spi_init(SPI_PORT, 12*1000);
+    spi_init(SPI_PORT, 1000*1000);
     gpio_set_function(PIN_MISO, GPIO_FUNC_SPI);
     gpio_set_function(PIN_CS,   GPIO_FUNC_SIO);
     gpio_set_function(PIN_SCK,  GPIO_FUNC_SPI);
