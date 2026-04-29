@@ -11,6 +11,7 @@
 
 void SPI_init();
 void adc_init_all();
-void sin_math(uint16_t val, uint8_t *data);
+void sin_math(float time, uint8_t *data);
+void triangle_math(float time, uint8_t *data);
 
 #endif
