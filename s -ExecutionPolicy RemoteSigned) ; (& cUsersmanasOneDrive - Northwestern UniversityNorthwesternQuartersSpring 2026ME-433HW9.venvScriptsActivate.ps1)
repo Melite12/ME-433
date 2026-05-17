@@ -1,0 +1,206 @@
+[33mcommit 60c4fd0344ce1b41a2fd7041fec7828c71778e7f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Sun May 17 15:16:09 2026 -0500
+
+    HW9 - Start
+
+[33mcommit 4d605f3be23497889c4ee0b73f06dc716a05dc50[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Thu May 14 17:31:17 2026 -0500
+
+    hw8 - finished
+
+[33mcommit d6892f8b7f40caa0739449379cb665ebf51eaa34[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Thu May 14 13:58:41 2026 -0500
+
+    HW8 - wrote code
+
+[33mcommit c5f61ca028604a703774fa755a98a5859abd32e5[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Wed Apr 29 17:17:46 2026 -0500
+
+    DONE
+
+[33mcommit 2176e0327344177ed3169d80eff5777336111da2[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Wed Apr 29 15:10:42 2026 -0500
+
+    Done, I think
+
+[33mcommit cca0516b60913e676b2e14b083ef93ed89953769[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Wed Apr 29 14:47:52 2026 -0500
+
+    Sin working
+
+[33mcommit cf2c995d285c42773600a0d12a82b6d11aa76ded[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Wed Apr 29 14:14:15 2026 -0500
+
+    SPI + ADC
+
+[33mcommit 09a2a678dcfe9e3490c262787f261e8f327dbc76[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Wed Apr 29 11:57:31 2026 -0500
+
+    Init
+
+[33mcommit 8d41590765b76e1cf0aa1ef38549d92d2d584907[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Wed Apr 22 23:17:55 2026 -0500
+
+    finished
+
+[33mcommit 7b5cb452e951c272d154ca9e3718a8253ff9668f[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Wed Apr 22 21:06:06 2026 -0500
+
+    testing
+
+[33mcommit ebfb90c4b9774cc5080a1aee52dd59d72de114fc[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Wed Apr 22 20:43:27 2026 -0500
+
+    imu working but not mouse
+
+[33mcommit 50a1b3a14e8f1d32d01880c4227a8cf53417e290[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Wed Apr 22 13:53:55 2026 -0500
+
+    not working :(
+
+[33mcommit 7a203d764965ed68173f871cd6b92bc912461f93[m[33m ([m[1;32mwhy_not_working[m[33m, [m[1;32mstep_back[m[33m)[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Wed Apr 22 12:13:13 2026 -0500
+
+    Initialise
+
+[33mcommit e4f727e4312079c595d791c44e1d4fbac45c9170[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Tue Apr 21 15:02:17 2026 -0500
+
+    finished
+
+[33mcommit 28581175a135a6382de6a66c11f1b8c368188955[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Tue Apr 21 14:28:28 2026 -0500
+
+    working
+
+[33mcommit ff12bbb27900df31c6a8c938a4cbb1e7f7486373[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Tue Apr 21 14:06:12 2026 -0500
+
+    imu working
+
+[33mcommit c8198d5c8e02a7882da681466b1be5c802de1120[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Mon Apr 20 23:26:37 2026 -0500
+
+    non-working imu
+
+[33mcommit 651e79bad33bb0e29ec7aedc3dd4bb0a5021c125[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Mon Apr 20 20:32:55 2026 -0500
+
+    WHO_AM_I
+
+[33mcommit 12c7309ba0a291c343c221968408fb50b04cbee4[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Mon Apr 20 20:19:57 2026 -0500
+
+    LED + constants
+
+[33mcommit 019a6e363a68d5910e3d7240eea3562a705b24f7[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Mon Apr 20 20:00:07 2026 -0500
+
+    HW5 init
+
+[33mcommit 46d00cc86f5724540f044b0225788486b039dfa0[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Sat Apr 18 23:21:01 2026 -0500
+
+    done
+
+[33mcommit 8a2bee7e59d581400382b3275e60b90fdcaf7571[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Sat Apr 18 23:01:39 2026 -0500
+
+    all functions
+
+[33mcommit a26afbb00d7584284d9fbd38e26995bc3ea2a52b[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Sat Apr 18 17:44:42 2026 -0500
+
+    led and oled working
+
+[33mcommit c48606474b9fa686f500629cd77786dc84a95754[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Sat Apr 18 16:33:59 2026 -0500
+
+    sample code + led
+
+[33mcommit 0d72a1f3761d37f5eedb7cbe25830b5f1b4326c4[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Sat Apr 18 16:14:50 2026 -0500
+
+    I2C
+
+[33mcommit 855f350572a871a407abd04eb261a0b9473231cd[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Mon Apr 13 15:09:52 2026 -0500
+
+    done
+
+[33mcommit b5320e0c3afadf4cc2f3ea7c6b75ca394680b216[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Mon Apr 13 14:35:30 2026 -0500
+
+    working
+
+[33mcommit 6085aee620721df4f1cad66f5339a1d9559dfd4b[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Sun Apr 12 21:24:21 2026 -0500
+
+    Created Base File
+
+[33mcommit 655929c11ddbbe95c7f2b4a422f0d61271173e62[m
+Merge: fe60745 01a6683
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Thu Apr 9 18:39:19 2026 -0500
+
+    Merge branch 'main' of https://github.com/Melite12/ME-433
+
+[33mcommit fe60745ab6095dc09ee9f0a856566f735123ca72[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Thu Apr 9 18:39:17 2026 -0500
+
+    Added Python Code
+
+[33mcommit 01a6683e3fa70fd9128617c3709b4cf6e12c55a8[m
+Author: Melite12 <63056123+Melite12@users.noreply.github.com>
+Date:   Thu Apr 9 14:57:03 2026 -0500
+
+    HW2 ReadMe
+    
+    Added a new section for HW2 on servo control.
+
+[33mcommit 2a9e73c4965702030f15c81bc59065d5486fa484[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Thu Apr 9 14:55:46 2026 -0500
+
+    C code is working
+
+[33mcommit b361d4d6bbff4a8cf9c6a9293300a2a59e17aba1[m
+Author: Melite12 <Manash.dugar@gmail.com>
+Date:   Thu Apr 9 14:52:22 2026 -0500
+
+    code not working yet
+
+[33mcommit f297ab96fcb7ec28babfe02050a827ba14775972[m
+Author: Melite12 <63056123+Melite12@users.noreply.github.com>
+Date:   Thu Apr 9 14:21:21 2026 -0500
+
+    Initial commit
