@@ -36,7 +36,6 @@ void SPI_init(){
     spi_init(SPI_PORT, 1000*1000);
     gpio_set_function(PIN_MISO, GPIO_FUNC_SPI);
     gpio_set_function(PIN_CS_DAC,   GPIO_FUNC_SIO);
-    gpio_set_function(PIN_CS_RAM,   GPIO_FUNC_SIO);
     gpio_set_function(PIN_SCK,  GPIO_FUNC_SPI);
     gpio_set_function(PIN_MOSI, GPIO_FUNC_SPI);
 
@@ -50,7 +49,7 @@ void SPI_init(){
 void ram_init(){
     int len = 2;
     uint8_t data[len];
-    data[0] = 0b00000001;
+    data[0] = 0b00000011;
     data[1] = 0b01000000;
     cs_select(PIN_CS_RAM);
     spi_write_blocking(SPI_PORT, data, len);
@@ -73,7 +72,7 @@ void ram_write_sin(){
         v_16bit = v_16bit | config;
 
         data[0] = v_16bit >> 8;
-        data[1] = v_16bit & 0xFF;
+        data[1] = v_16bit * 0xFF;
 
         ram_write(addr, data);
         addr += 2;
