@@ -24,5 +24,4 @@ plt.show()
 sample_rate = t[-1]/len(t)
 print(sample_rate)
 
-# Part 4
 
