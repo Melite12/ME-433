@@ -227,17 +227,29 @@ frq4_iir, Y4_iir = FFT(ts4_iir, data4_iir)
 ### PART 7 ###
 ##############
 
-# Example code, computes the coefficients of a low-pass windowed-sinc filter.
 
-fS = 10000  # Sampling rate.
-fL = 100  # Cutoff frequency.
-N = 91  # Filter length, must be odd.
-h = np.sinc(2 * fL / fS * (np.arange(N) - (N - 1) / 2))
-h /= np.sum(h)
+def FIR(fS, fL, N, func, TIME, DATA):
+    h = np.sinc(2 * fL / fS * (np.arange(N) - (N - 1) / 2))
+    if func != None:
+       h *= func(N)
+    h /= np.sum(h)
+    data_fir = np.convolve(DATA, h)
+    ts_fir = np.arange(0, len(data_fir)/fS, 1/fS)
 
-data_fir = np.convolve(data, h)
-ts_fir = np.arange(0, len(data_fir)/fS, 1/fS)
+    return ts_fir, data_fir
+
+
+ts_fir, data_fir = FIR(10000, 100, 91, None, ts, data)
 frq_fir, Y_fir = FFT(ts_fir, data_fir)
+
+ts2_fir, data2_fir = FIR(3300, 33, 311, np.hamming, ts2, data2)
+frq2_fir, Y2_fir = FFT(ts2_fir, data2_fir)
+
+ts3_fir, data3_fir = FIR(2500, 25, 461, np.blackman, ts3, data3)
+frq3_fir, Y3_fir = FFT(ts3_fir, data3_fir)
+
+ts4_fir, data4_fir = FIR(400, 5, 61, None, ts4, data4)
+frq4_fir, Y4_fir = FFT(ts4_fir, data4_fir)
 
 
 # SIGNAL A
@@ -248,12 +260,29 @@ plt.xlabel('Freq (Hz)')
 plt.ylabel('|Y(freq)|')
 plt.title("Signal A: 100Hz cutoff; 100Hz Bandwidth; Rectangular Filter; 91 coefficients")
 
+# SIGNAL B
 plt.figure()
-plt.plot(ts, data, lw=0.5, color ="black")
-plt.plot(ts_fir, data_fir, lw=0.5, color = "red")
-plt.xlabel("Time (s)")
-plt.ylabel("Amplitude")
-plt.title("Signal A: 100Hz cutoff; 100Hz Bandwidth; Rectangular Filter; 91 coefficients")
+plt.loglog(frq2, abs(Y2), lw=0.5, color ="black")
+plt.loglog(frq2_fir, abs(Y2_fir), lw=0.5, color = "red")
+plt.xlabel('Freq (Hz)')
+plt.ylabel('|Y(freq)|')
+plt.title("Signal B: 33Hz cutoff; 33Hz Bandwidth; Hamming Filter; 311 coefficients")
+
+# SIGNAL C
+plt.figure()
+plt.loglog(frq3, abs(Y3), lw=0.5, color ="black")
+plt.loglog(frq3_fir, abs(Y3_fir), lw=0.5, color = "red")
+plt.xlabel('Freq (Hz)')
+plt.ylabel('|Y(freq)|')
+plt.title("Signal C: 25Hz cutoff; 25Hz Bandwidth; Blackman Filter; 461 coefficients")
+
+# SIGNAL D
+plt.figure()
+plt.loglog(frq4, abs(Y4), lw=0.5, color ="black")
+plt.loglog(frq4_fir, abs(Y4_fir), lw=0.5, color = "red")
+plt.xlabel('Freq (Hz)')
+plt.ylabel('|Y(freq)|')
+plt.title("Signal D: 5Hz cutoff; 6Hz Bandwidth; Rectangular Filter; 61 coefficients")
 
 plt.show()
 
