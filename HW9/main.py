@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt # for plotting
 import numpy as np # for sine function
 
 
-
 ts = []
 data = []
 with open('dsp/sigA.csv') as f:
