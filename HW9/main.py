@@ -2,6 +2,8 @@ import csv
 import matplotlib.pyplot as plt # for plotting
 import numpy as np # for sine function
 
+
+
 ts = []
 data = []
 with open('dsp/sigA.csv') as f:
@@ -56,7 +58,6 @@ def FFT(TIME, DATA):
     Y = Y[range(int(n/2))]
     return frq, Y
 
-
 frq, Y = FFT(ts, data)
 frq2, Y2 = FFT(ts2, data2)
 frq3, Y3 = FFT(ts3, data3)
@@ -72,8 +73,6 @@ frq4, Y4 = FFT(ts4, data4)
 # ax2.set_xlabel('Freq (Hz)')
 # ax2.set_ylabel('|Y(freq)|')
 
-
-
 # # SIGNAL B
 # fig2, (ax1, ax2) = plt.subplots(2, 1)
 # fig2.suptitle("Signal B")
@@ -83,8 +82,6 @@ frq4, Y4 = FFT(ts4, data4)
 # ax2.loglog(frq2,abs(Y2),'b',lw=0.5) # plotting the fft
 # ax2.set_xlabel('Freq (Hz)')
 # ax2.set_ylabel('|Y(freq)|')
-
-
 
 # # SIGNAL C
 # fig3, (ax1, ax2) = plt.subplots(2, 1)
@@ -96,8 +93,6 @@ frq4, Y4 = FFT(ts4, data4)
 # ax2.set_xlabel('Freq (Hz)')
 # ax2.set_ylabel('|Y(freq)|')
 
-
-
 # # SIGNAL D
 # fig4, (ax1, ax2) = plt.subplots(2, 1)
 # fig4.suptitle("Signal D")
@@ -108,7 +103,6 @@ frq4, Y4 = FFT(ts4, data4)
 # ax2.set_xlabel('Freq (Hz)')
 # ax2.set_ylabel('|Y(freq)|')
 
-# plt.show()
 
 
 ##############
@@ -135,9 +129,7 @@ frq3_lpf, Y3_lpf = FFT(ts3_lpf, data3_lpf)
 ts4_lpf, data4_lpf = lpf(100, ts4, data4)
 frq4_lpf, Y4_lpf = FFT(ts4_lpf, data4_lpf)
 
-
-
-# # SIGNAL A
+# SIGNAL A
 # plt.figure()
 # plt.loglog(frq, abs(Y), lw=0.5, color ="black")
 # plt.loglog(frq_lpf, abs(Y_lpf), lw=0.5, color = "red")
@@ -169,7 +161,7 @@ frq4_lpf, Y4_lpf = FFT(ts4_lpf, data4_lpf)
 # plt.ylabel('|Y(freq)|')
 # plt.title("Signal D: LPF with 100 datapoints")
 
-# plt.show()
+
 
 ##############
 ### PART 6 ###
@@ -229,5 +221,39 @@ frq4_iir, Y4_iir = FFT(ts4_iir, data4_iir)
 # plt.ylabel('|Y(freq)|')
 # plt.title("Signal D: IRR with a = 0.9; b = 0.1")
 
-# plt.show()
+
+
+##############
+### PART 7 ###
+##############
+
+# Example code, computes the coefficients of a low-pass windowed-sinc filter.
+
+fS = 10000  # Sampling rate.
+fL = 100  # Cutoff frequency.
+N = 91  # Filter length, must be odd.
+h = np.sinc(2 * fL / fS * (np.arange(N) - (N - 1) / 2))
+h /= np.sum(h)
+
+data_fir = np.convolve(data, h)
+ts_fir = np.arange(0, len(data_fir)/fS, 1/fS)
+frq_fir, Y_fir = FFT(ts_fir, data_fir)
+
+
+# SIGNAL A
+plt.figure()
+plt.loglog(frq, abs(Y), lw=0.5, color ="black")
+plt.loglog(frq_fir, abs(Y_fir), lw=0.5, color = "red")
+plt.xlabel('Freq (Hz)')
+plt.ylabel('|Y(freq)|')
+plt.title("Signal A: 100Hz cutoff; 100Hz Bandwidth; Rectangular Filter; 91 coefficients")
+
+plt.figure()
+plt.plot(ts, data, lw=0.5, color ="black")
+plt.plot(ts_fir, data_fir, lw=0.5, color = "red")
+plt.xlabel("Time (s)")
+plt.ylabel("Amplitude")
+plt.title("Signal A: 100Hz cutoff; 100Hz Bandwidth; Rectangular Filter; 91 coefficients")
+
+plt.show()
 
