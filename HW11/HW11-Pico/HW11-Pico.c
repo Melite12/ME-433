@@ -31,12 +31,16 @@ int main()
             }
         }
 
-        if (uart_is_readable(UART_ID)) {
+        while (uart_is_readable(UART_ID)) {
         char c = uart_getc(UART_ID);
-        putchar(c);
+        if (c == '\n') {
+            putchar('\n');
+        } else {
+            putchar(c);
         }
+}
 
-        sleep_ms(100);
+        sleep_ms(10);
     }
 }
 
