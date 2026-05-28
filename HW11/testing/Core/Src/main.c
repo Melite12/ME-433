@@ -159,7 +159,7 @@ int main(void)
 	if (HAL_UART_Receive(&huart1, (uint8_t *)&c, 1, 1000) == HAL_OK) {
 
 		if (c == '\n') {
-			printf("\r\n");
+			printf("\n");
 		} else {
 			printf("%c", c);
 		}
