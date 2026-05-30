@@ -5,7 +5,7 @@ import numpy as np
 
 PORT = "COM7"
 BAUD = 115200
-NUM_SAMPLES = 1000
+NUM_SAMPLES = 500
 
 ser = serial.Serial(PORT, BAUD, timeout=5)
 
@@ -48,13 +48,40 @@ def FFT(TIME, DATA):
 
 frq, Y = FFT(times, values)
 
+def IIR(A, TIME, DATA):
+    B = 1 - A
+    data_iir = [0]
+    ts_iir = TIME
+    for i in range(len(DATA)):
+        data_iir.append(A*data_iir[i - 1] + B*DATA[i])
+
+    data_iir.pop(0)
+    return ts_iir, data_iir 
+
+
+ts_iir, data_iir = IIR(0.1, times, values)
+frq_iir, Y_iir = FFT(ts_iir, data_iir)
+
+
+### RAW DATA ###
 fig1, (ax1, ax2) = plt.subplots(2, 1)
-fig1.suptitle("Raw Data")
+fig1.suptitle(f"Raw Data: {NUM_SAMPLES} datapoints")
 ax1.plot(times,values,lw=0.5)
 ax1.set_xlabel('Time (s)')
 ax1.set_ylabel('Amplitude')
 ax2.loglog(frq,abs(Y),lw=0.5) # plotting the fft
 ax2.set_xlabel('Freq (Hz)')
 ax2.set_ylabel('|Y(freq)|')
+
+### Filtered Data ###
+fig2, (ax1, ax2) = plt.subplots(2, 1)
+fig2.suptitle(f"Filtered Data (a = 0.1): : {NUM_SAMPLES} datapoints")
+ax1.plot(ts_iir,data_iir,lw=0.5)
+ax1.set_xlabel('Time (s)')
+ax1.set_ylabel('Amplitude')
+ax2.loglog(frq_iir,abs(Y_iir),lw=0.5) # plotting the fft
+ax2.set_xlabel('Freq (Hz)')
+ax2.set_ylabel('|Y(freq)|')
+
 
 plt.show()
