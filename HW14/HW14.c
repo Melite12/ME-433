@@ -13,20 +13,18 @@ int main()
         int num;
         scanf("%d",&num);
 
-        int voltages[1000];
-        uint64_t times[1000];
-
+        int voltages[5000];
+        uint64_t times[5000];
+        
         for (int i = 0; i < num; i++){
             int val = hx711_read();
 
-            // any filtering goes here
-
-            voltages[i] = val;
+            voltages[i] = avg;
             times[i] = to_ms_since_boot(get_absolute_time());
         }
 
         for (int i = 0; i < num; i++){
-            printf("%d %llu %d", i, times[i], voltages[i]);
+            printf("%d %llu %d\n", i, times[i], voltages[i]);
         }
 
         sleep_ms(100);
@@ -54,7 +52,7 @@ int hx711_read(){
         tight_loop_contents();
     }
 
-    unsigned int raw;
+    unsigned int raw = 0;
     for (int i = 0; i < 24; i++){
         gpio_put(PIN_SCK, 1);
         sleep_us(clock_time_us);
