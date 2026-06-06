@@ -19,7 +19,7 @@ int main()
         for (int i = 0; i < num; i++){
             int val = hx711_read();
 
-            voltages[i] = avg;
+            voltages[i] = val;
             times[i] = to_ms_since_boot(get_absolute_time());
         }
 
