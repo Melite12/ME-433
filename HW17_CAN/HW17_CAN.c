@@ -5,7 +5,7 @@
 #define CAN_ID 0x150
  
 int main(void) {
-    stdio_init_all();
+    stdio_init_all();   
     sleep_ms(100);
  
     can_init();

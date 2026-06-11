@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+
 PORT = "COM7"
 BAUD = 115200
 NUM_SAMPLES = 500

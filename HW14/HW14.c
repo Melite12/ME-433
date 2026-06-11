@@ -27,7 +27,6 @@ int main()
             printf("%d %llu %d\n", i, times[i], voltages[i]);
         }
 
-        sleep_ms(100);
     }
 }
 

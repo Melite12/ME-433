@@ -42,12 +42,11 @@ float encoder_read(){
     uint8_t buf[2];
     uint16_t val = 0;
     
-    i2c_write_blocking(i2c0, ENCODER_ADDR, &reg, 1, true);
+    i2c_write_blocking(i2c0, ENCx`ODER_ADDR, &reg, 1, true);
     i2c_read_blocking(i2c0, ENCODER_ADDR, buf, 2, false);
 
     val = ((uint16_t)(buf[0] & 0x0F) << 8) | buf[1];
     float angle_deg = (val / 4096.0f) * 360.0f;
 
     return angle_deg;
-
 }
